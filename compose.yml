@@ -10,7 +10,6 @@ services:
       - ./src:/var/www/html
     depends_on:
       - app
-      - db
 
   app:
     container_name: app-mem-vison
