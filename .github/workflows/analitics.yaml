@@ -1,4 +1,4 @@
-name: fix
+name: analitics-php
 
 on:
   pull_request:
