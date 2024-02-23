@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Member extends Model
 {
     use HasFactory;
+
+    // 代入可能な属性
+    protected $fillable = ['user_id', 'name', 'nickname'];
 }

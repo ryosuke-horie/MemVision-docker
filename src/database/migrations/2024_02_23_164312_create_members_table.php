@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id'); // Userテーブルへの参照
+            $table->string('name'); // 本名
+            $table->string('nickname')->nullable(); // ニックネーム
             $table->timestamps();
+
+            // user_idをusersテーブルのidに外部キーとして設定
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
