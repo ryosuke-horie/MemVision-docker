@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
 use App\Models\Member;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class MemberController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 会員情報一覧
+     * @return \Inertia\Response
      */
-    public function index()
+    public function index(): Response
     {
-        //
+        return Inertia::render('Members/Index', [
+            'members' => Member::all(),
+        ]);
     }
 
     // /**
