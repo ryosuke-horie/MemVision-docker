@@ -4,8 +4,8 @@ namespace Tests\Unit\Models;
 
 use App\Models\Member;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 class MemberTest extends TestCase
 {
