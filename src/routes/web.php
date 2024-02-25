@@ -38,7 +38,20 @@ Route::middleware('auth')->group(function () {
 
 // membersのプレフィックスが付いたルートを定義
 Route::prefix('members')->middleware('auth')->group(function () {
+    // 一覧
     Route::get('/', [MemberController::class, 'index'])->name('members.index');
+    // 新規登録
+    Route::get('/create', [MemberController::class, 'create'])->name('members.create');
+    // 登録処理
+    Route::post('/', [MemberController::class, 'store'])->name('members.store');
+    // 編集
+    Route::get('/{member_id}/edit', [MemberController::class, 'edit'])->name('members.edit');
+    // 更新処理
+    Route::put('/{member_id}', [MemberController::class, 'update'])->name('members.update');
+    // 削除
+    Route::delete('/{member_id}', [MemberController::class, 'destroy'])->name('members.destroy');
+    // 詳細
+    Route::get('/{member_id}', [MemberController::class, 'show'])->name('members.show');
 });
 
 require __DIR__ . '/auth.php';

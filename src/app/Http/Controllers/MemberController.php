@@ -21,51 +21,55 @@ class MemberController extends Controller
         ]);
     }
 
-    // /**
-    //  * Show the form for creating a new resource.
-    //  */
-    // public function create()
-    // {
-    //     //
-    // }
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return Inertia::render('Members/Create');
+    }
 
-    // /**
-    //  * Store a newly created resource in storage.
-    //  */
-    // public function store(StoreMemberRequest $request)
-    // {
-    //     //
-    // }
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StoreMemberRequest $request)
+    {
+        return Inertia::render('Members/Index');
+    }
 
-    // /**
-    //  * Display the specified resource.
-    //  */
-    // public function show(Member $member)
-    // {
-    //     //
-    // }
+    /**
+     * Display the specified resource.
+     */
+    public function show(Member $member)
+    {
+        return Inertia::render('Members/Show', [
+            'member' => $member,
+        ]);
+    }
 
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  */
-    // public function edit(Member $member)
-    // {
-    //     //
-    // }
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(int $member_id)
+    {
+        echo $member_id;
+        return Inertia::render('Members/Edit');
+    }
 
-    // /**
-    //  * Update the specified resource in storage.
-    //  */
-    // public function update(UpdateMemberRequest $request, Member $member)
-    // {
-    //     //
-    // }
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UpdateMemberRequest $request, Member $member)
+    {
+        return Inertia::render('Members/Index');
+    }
 
-    // /**
-    //  * Remove the specified resource from storage.
-    //  */
-    // public function destroy(Member $member)
-    // {
-    //     //
-    // }
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(int $member_id)
+    {
+        echo $member_id;
+        return Inertia::render('Members/Index');
+    }
 }
