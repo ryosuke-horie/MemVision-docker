@@ -56,4 +56,12 @@ class MemberControllerTest extends TestCase
         $response = $this->get('/members/1');
         $response->assertOk();
     }
+
+    #[Test]
+    public function 一覧画面_会員情報が表示されることをテスト()
+    {
+        $this->login();
+
+        $response = $this->get('/members');
+    }
 }
