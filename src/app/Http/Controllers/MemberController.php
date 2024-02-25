@@ -24,7 +24,7 @@ class MemberController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('Members/Create');
     }
@@ -32,7 +32,7 @@ class MemberController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreMemberRequest $request)
+    public function store(StoreMemberRequest $request): Response
     {
         return Inertia::render('Members/Index');
     }
@@ -40,7 +40,7 @@ class MemberController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Member $member)
+    public function show(Member $member): Response
     {
         return Inertia::render('Members/Show', [
             'member' => $member,
@@ -50,7 +50,7 @@ class MemberController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(int $member_id)
+    public function edit(int $member_id): Response
     {
         echo $member_id;
         return Inertia::render('Members/Edit');
@@ -59,7 +59,7 @@ class MemberController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMemberRequest $request, Member $member)
+    public function update(UpdateMemberRequest $request, Member $member): Response
     {
         return Inertia::render('Members/Index');
     }
@@ -67,7 +67,7 @@ class MemberController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $member_id)
+    public function destroy(int $member_id): Response
     {
         echo $member_id;
         return Inertia::render('Members/Index');
