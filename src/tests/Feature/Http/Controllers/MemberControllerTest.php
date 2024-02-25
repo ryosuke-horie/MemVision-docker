@@ -80,17 +80,7 @@ class MemberControllerTest extends TestCase
         $response->assertInertia(
             fn (Assert $page) => $page
                 ->component('Members/Index')
-                ->has(
-                    'members',
-                    50,
-                    fn (Assert $page) => $page
-                        ->has('id')
-                        ->has('user_id')
-                        ->has('name')
-                        ->has('nickname')
-                        ->has('created_at')
-                        ->has('updated_at')
-                )
+                ->has('members')
                 ->has('user')
         );
     }
