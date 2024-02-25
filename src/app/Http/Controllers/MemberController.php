@@ -10,16 +10,28 @@ use Inertia\Response;
 
 class MemberController extends Controller
 {
+    protected Member $member;
+    protected int $limit_count = 50;
+
+    public function __construct()
+    {
+        $this->member = new Member();
+    }
+
     /**
      * 会員情報一覧
      */
     public function index(): Response
     {
+        // ログインユーザー情報を取得
         $user = auth()->user();
+
+        // user（ジム）に紐づく会員情報を取得
+        $members = $this->member->getPaginateByLimit($user->id, $this->limit_count);
 
         return Inertia::render('Members/Index', [
             'user' => $user,
-            'members' => Member::all(),
+            'members' => $members,
         ]);
     }
 
