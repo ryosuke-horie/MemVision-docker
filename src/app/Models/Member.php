@@ -18,7 +18,7 @@ class Member extends Model
      * ページネーション対応
      * @param int $userId
      * @param int $limit_count
-     * @return LengthAwarePaginator
+     * @return LengthAwarePaginator<Member>
      */
     public function getPaginateByLimit(int $userId, int $limit_count = 50): LengthAwarePaginator
     {
