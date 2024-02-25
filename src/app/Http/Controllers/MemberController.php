@@ -15,7 +15,10 @@ class MemberController extends Controller
      */
     public function index(): Response
     {
+        $user = auth()->user();
+
         return Inertia::render('Members/Index', [
+            'user' => $user,
             'members' => Member::all(),
         ]);
     }
