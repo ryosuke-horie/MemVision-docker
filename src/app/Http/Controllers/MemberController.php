@@ -12,7 +12,6 @@ class MemberController extends Controller
 {
     /**
      * 会員情報一覧
-     * @return \Inertia\Response
      */
     public function index(): Response
     {
@@ -53,6 +52,7 @@ class MemberController extends Controller
     public function edit(int $member_id): Response
     {
         echo $member_id;
+
         return Inertia::render('Members/Edit');
     }
 
@@ -70,6 +70,7 @@ class MemberController extends Controller
     public function destroy(int $member_id): Response
     {
         echo $member_id;
+
         return Inertia::render('Members/Index');
     }
 }

@@ -15,7 +15,6 @@ abstract class TestCase extends BaseTestCase
         parent::setUp();
     }
 
-
     protected function login()
     {
         $user = User::factory()->create();
