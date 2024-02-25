@@ -1,7 +1,6 @@
-name: fix
+name: analitics-php
 
-on:
-  pull_request:
+on: push
 
 jobs:
   fix:
@@ -19,6 +18,6 @@ jobs:
       - name: Run phpstan
         working-directory: ./src
         run: ./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit=1G
-      - name: Run php-cs-fixer
+      - name: Run Pint
         working-directory: ./src
-        run: ./vendor/bin/php-cs-fixer fix -v --diff --dry-run
+        run: ./vendor/bin/pint
