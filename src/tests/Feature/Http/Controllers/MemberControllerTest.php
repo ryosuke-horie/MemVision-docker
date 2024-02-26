@@ -2,11 +2,21 @@
 
 namespace Tests\Unit\Http\Controllers;
 
+use App\Models\Member;
+use App\Models\User;
+use Inertia\Testing\AssertableInertia as Assert;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class MemberControllerTest extends TestCase
 {
+    public function setUp(): void
+    {
+        parent::setUp();
+        // 50件のジム情報を作成
+        User::factory()->count(50)->create();
+    }
+
     #[Test]
     public function 未ログイン時、Login画面にリダイレクトされることをテスト()
     {
@@ -55,5 +65,23 @@ class MemberControllerTest extends TestCase
         // 詳細
         $response = $this->get('/members/1');
         $response->assertOk();
+    }
+
+    #[Test]
+    public function 一覧画面_バックエンドに渡すパラメータをテスト()
+    {
+        // 会員情報を作成
+        Member::factory()->count(100)->create();
+
+        $this->login();
+        $response = $this->get('/members');
+
+        // Inertiaレスポンスをテスト
+        $response->assertInertia(
+            fn (Assert $page) => $page
+                ->component('Members/Index')
+                ->has('members')
+                ->has('user')
+        );
     }
 }

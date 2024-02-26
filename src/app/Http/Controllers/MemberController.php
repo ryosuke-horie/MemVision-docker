@@ -5,18 +5,40 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
 use App\Models\Member;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class MemberController extends Controller
 {
+    protected Member $member;
+
+    protected int $limit_count = 50;
+
+    public function __construct()
+    {
+        $this->member = new Member();
+    }
+
     /**
      * 会員情報一覧
      */
-    public function index(): Response
+    public function index(): Response|RedirectResponse
     {
+        // ログインユーザー情報を取得
+        $user = auth()->user();
+
+        // ログインしていない場合はログイン画面にリダイレクト
+        if (! $user) {
+            return redirect()->route('login');
+        }
+
+        // user（ジム）に紐づく会員情報を取得
+        $members = $this->member->getAllMemberByUserId($user->id);
+
         return Inertia::render('Members/Index', [
-            'members' => Member::all(),
+            'user' => $user,
+            'members' => $members,
         ]);
     }
 
