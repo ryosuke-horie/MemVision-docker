@@ -1,5 +1,15 @@
-<script setup lang="ts">
+<script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+defineProps({
+    members: {
+        type: Array,
+        required: true,
+    },
+    user: {
+        type: Object,
+        required: true,
+    },
+});
 </script>
 
 <template>
@@ -76,145 +86,38 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
                                 <tbody
                                     class="divide-y divide-gray-200 dark:divide-gray-700"
                                 >
-                                    <tr>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200"
-                                        >
-                                            John Brown
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
-                                        >
-                                            45
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
-                                        >
-                                            New York No. 1 Lake Park
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium"
-                                        >
-                                            <button
-                                                type="button"
-                                                class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                    <template
+                                        v-for="member in members"
+                                        :key="member.id"
+                                    >
+                                        <tr>
+                                            <td
+                                                class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200"
                                             >
-                                                Delete
-                                            </button>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200"
-                                        >
-                                            Jim Green
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
-                                        >
-                                            27
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
-                                        >
-                                            London No. 1 Lake Park
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium"
-                                        >
-                                            <button
-                                                type="button"
-                                                class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                                {{ member.name }}
+                                            </td>
+                                            <td
+                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
                                             >
-                                                Delete
-                                            </button>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200"
-                                        >
-                                            Joe Black
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
-                                        >
-                                            31
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
-                                        >
-                                            Sidney No. 1 Lake Park
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium"
-                                        >
-                                            <button
-                                                type="button"
-                                                class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                                {{ member.nickname }}
+                                            </td>
+                                            <td
+                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
                                             >
-                                                Delete
-                                            </button>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200"
-                                        >
-                                            Edward King
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
-                                        >
-                                            16
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
-                                        >
-                                            LA No. 1 Lake Park
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium"
-                                        >
-                                            <button
-                                                type="button"
-                                                class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                                {{ member.name }}
+                                            </td>
+                                            <td
+                                                class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium"
                                             >
-                                                Delete
-                                            </button>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200"
-                                        >
-                                            Jim Red
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
-                                        >
-                                            45
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
-                                        >
-                                            Melbourne No. 1 Lake Park
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium"
-                                        >
-                                            <button
-                                                type="button"
-                                                class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                            >
-                                                Delete
-                                            </button>
-                                        </td>
-                                    </tr>
+                                                <button
+                                                    type="button"
+                                                    class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </template>
                                 </tbody>
                             </table>
                         </div>

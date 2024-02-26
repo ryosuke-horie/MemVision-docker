@@ -33,7 +33,7 @@ class MemberController extends Controller
         }
 
         // user（ジム）に紐づく会員情報を取得
-        $members = $this->member->getPaginateByLimit($user->id, $this->limit_count);
+        $members = $this->member->getAllMemberByUserId($user->id);
 
         return Inertia::render('Members/Index', [
             'user' => $user,

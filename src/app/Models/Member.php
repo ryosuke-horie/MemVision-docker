@@ -14,14 +14,12 @@ class Member extends Model
     protected $fillable = ['user_id', 'name', 'nickname'];
 
     /**
-     * 一覧情報の取得
-     * ページネーション対応
-     * @param int $userId
-     * @param int $limit_count
-     * @return LengthAwarePaginator<Member>
+     * ユーザーIDに紐づくメンバー情報を全件取得
+     * @param string $userId
+     * @return array<Member>
      */
-    public function getPaginateByLimit(int $userId, int $limit_count = 50): LengthAwarePaginator
+    public function getAllMemberByUserId(string $userId): array
     {
-        return $this->where('user_id', $userId)->orderBy('id', 'desc')->paginate($limit_count);
+        return $this->where('user_id', $userId)->get()->toArray();
     }
 }
