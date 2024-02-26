@@ -12,6 +12,7 @@ use Inertia\Response;
 class MemberController extends Controller
 {
     protected Member $member;
+
     protected int $limit_count = 50;
 
     public function __construct()
@@ -28,7 +29,7 @@ class MemberController extends Controller
         $user = auth()->user();
 
         // ログインしていない場合はログイン画面にリダイレクト
-        if (!$user) {
+        if (! $user) {
             return redirect()->route('login');
         }
 

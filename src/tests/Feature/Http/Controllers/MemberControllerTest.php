@@ -4,9 +4,9 @@ namespace Tests\Unit\Http\Controllers;
 
 use App\Models\Member;
 use App\Models\User;
+use Inertia\Testing\AssertableInertia as Assert;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
-use Inertia\Testing\AssertableInertia as Assert;
 
 class MemberControllerTest extends TestCase
 {
