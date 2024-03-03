@@ -53,6 +53,35 @@ services:
     volumes:
       - test-mysql-volume:/var/lib/mysql
 
+  # https://qiita.com/layzy_glp/items/bbf4ee5237bae50db9f2
+  # ローカルで試せるs3互換
+  minio:
+    image: "minio/minio:RELEASE.2023-01-02T09-40-09Z.fips"
+    volumes:
+      - "./minio/data:/data:delegated"
+    ports:
+      - ${MINIO_API_PORT}:9000
+      - ${MINIO_CONSOLE_PORT}:9001
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
+      - MINIO_SERVER_URL=${MINIO_SERVER_URL}
+    command: server /data --console-address :9001
+
+  # Bucketの作成（すぐに死ぬ）
+  createbuckets:
+    image: "minio/mc"
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      echo start_up;
+      sleep 5;
+      /usr/bin/mc config host add myminio http://minio:9000 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD};
+      /usr/bin/mc mb myminio/${MINIO_BUCKET_NAME};
+      exit 0;
+      "
+
 volumes:
   mysql-volume:
   test-mysql-volume:
